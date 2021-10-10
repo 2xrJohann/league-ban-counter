@@ -227,7 +227,8 @@ func getMatchTimeline(matchId string, apiKey string) *matchTimeline {
 }
 
 func getMatches(puuid string, apiKey string) []string {
-	url := fmt.Sprintf("https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=0&count=3&api_key=%s", puuid, apiKey)
+	//change count param in url below to choose how many games you want, check rate limit first since all are used to call match via id after
+	url := fmt.Sprintf("https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=0&count=50&api_key=%s", puuid, apiKey)
 	resp, _ := http.Get(url)
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
